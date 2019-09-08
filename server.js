@@ -1,19 +1,17 @@
 /* Setting things up. */
-var path = require("path"),
-  tweetData = require(__dirname + "/tweetData.js"),
-  express = require("express"),
-  fs = require("fs"),
-  helpers = require(__dirname + "/helpers.js"),
-  twitter = require(__dirname + "/twitter.js"),
-  app = express(),
-  res = null;
-
+const path = require("path");
+const express = require("express");
+const fs = require("fs");
 const { Console } = require("console");
 const output = fs.createWriteStream("./stdout.log");
 const errorOutput = fs.createWriteStream("./stderr.log");
-// Custom simple logger
 const logger = new Console({ stdout: output, stderr: errorOutput });
-// use it like console
+const app = express();
+const res = null;
+// Helper functions and data
+const tweetData = require(__dirname + "/tweetData.js");
+const helpers = require(__dirname + "/helpers.js");
+const twitter = require(__dirname + "/twitter.js");
 
 app.use(express.static("/"));
 
