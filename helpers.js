@@ -3,27 +3,21 @@ const path = require("path");
 const request = require("request");
 
 module.exports = {
-  randomFromArray(arr) {
+  compose: (...fns) => x => fns.reduceRight((v, f) => f(v), x),
+  pipe: (...fns) => x => fns.reduce((v, f) => f(v), x),
+  randomFromArray: arr => {
     if (!arr) {
       return false;
     }
     return arr[Math.floor(Math.random() * arr.length)];
   },
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
-  getRandomRange(min, max, fixed) {
-    return (Math.random() * (max - min) + min).toFixed(fixed) * 1;
-  },
-  prependArrItems(arr, str) {
-    return arr.map(arrItem => `${str}${arrItem}`);
-  },
-  genReplyTweet(username, reply) {
+  getRandomInt: (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+  getRandomRange: (min, max, fixed) => (Math.random() * (max - min) + min).toFixed(fixed) * 1,
+  prependArrItems: (arr, str) => arr.map(arrItem => `${str}${arrItem}`),
+  genReplyTweet: (username, reply) => {
     return { generated_reply: `@${username} ${reply}` };
   },
-  shuffleArr(arr) {
-    return arr.sort(() => 0.5 - Math.random());
-  },
+  shuffleArr: arr => arr.sort(() => 0.5 - Math.random()),
   loadImageAssets(cb) {
     /* Load images from the assets folder */
     console.log("reading assets folder...");

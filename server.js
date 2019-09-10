@@ -11,6 +11,7 @@ const res = null;
 // Helper functions and data
 const tweetData = require(__dirname + "/tweetData.js");
 const helpers = require(__dirname + "/helpers.js");
+const { pipe, compose } = require(__dirname + "/helpers.js");
 const twitter = require(__dirname + "/twitter.js");
 
 app.use(express.static("/"));
