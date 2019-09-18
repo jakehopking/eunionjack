@@ -20,9 +20,11 @@ app.use(express.static("/"));
 
 app.all(`/${process.env.BOT_ENDPOINT}`, function(req, res) {
   // Select two tags from shuffled array of tags, and convert to string for search
-  let tags = helpers
+  const tags = helpers
     .prependArrItems(helpers.shuffleArr(tweetData.proTags), "#")
+    // after shuffling, take first two
     .slice(0, 2)
+    // join to comma sep string
     .join(", ");
   twitter.find(tags, 10, function(err, data, response) {
     if (err) {
