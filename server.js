@@ -22,7 +22,7 @@ app.all(`/${process.env.BOT_ENDPOINT}`, function(req, res) {
   // Select two tags from shuffled array of tags, and convert to string for search
   const tags = helpers
     .prependArrItems(helpers.shuffleArr(tweetData.proTags), "#")
-    // after shuffling, take first two
+    // after shuffling tags, prepend wtih #, and take first two:
     .slice(0, 2)
     // join to comma sep string
     .join(", ");
